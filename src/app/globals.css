@@ -1,0 +1,239 @@
+:root {
+  /* palette: paper, ink, the logo's gold */
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  --ink-2: #4a4843; /* secondary text on paper, 9.13:1 */
+  --gold: #b49465;
+  --gold-ink: #2b2317; /* secondary text on gold, 5.43:1 */
+  --rule: #0a0a0a;
+  --grid-line: rgb(10 10 10 / 0.07);
+
+  /* grid */
+  --cols: 4;
+  --margin: 20px;
+  --gutter: 16px;
+  --page-max: 1680px;
+
+  /* rhythm */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+  --space-7: 9rem;
+
+  /* type */
+  --wide: "wdth" 100;
+  --condensed: "wdth" 68;
+  --text-body: 1.0625rem;
+  --text-small: 0.875rem;
+  --text-lead: clamp(1.1875rem, 1rem + 0.6vw, 1.4375rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 720px) {
+  :root {
+    --cols: 8;
+    --margin: 32px;
+    --gutter: 20px;
+    --text-body: 1.125rem;
+  }
+}
+
+@media (min-width: 1080px) {
+  :root {
+    --cols: 12;
+    --margin: 48px;
+    --gutter: 24px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+  scrollbar-color: var(--ink) var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.55;
+  font-variation-settings: var(--wide);
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border: 3px solid var(--paper);
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* The module grid, drawn. Every layout on the site recomposes by these columns. */
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gutter);
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.grid-lines {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.grid-lines > .page-grid {
+  height: 100%;
+}
+.grid-lines span {
+  border-inline: 1px solid var(--grid-line);
+}
+.grid-lines span:nth-child(n + 5) {
+  display: none;
+}
+@media (min-width: 720px) {
+  .grid-lines span:nth-child(n + 5) {
+    display: block;
+  }
+  .grid-lines span:nth-child(n + 9) {
+    display: none;
+  }
+}
+@media (min-width: 1080px) {
+  .grid-lines span:nth-child(n + 9) {
+    display: block;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--margin);
+  top: -100px;
+  z-index: 50;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* the primary action: a flat ink block, never a pill */
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.25rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+.action svg {
+  transition: transform 0.35s var(--ease-out);
+}
+.action:hover svg,
+.action:focus-visible svg {
+  transform: translateX(4px);
+}
+.action:hover {
+  background: #26241f;
+}
+.action--on-dark {
+  background: var(--gold);
+  color: var(--ink);
+}
+.action--on-dark:hover {
+  background: #c7a878;
+}
+.action--on-dark:focus-visible {
+  outline-color: var(--gold);
+}
+
+/* pending content is loud on purpose so it cannot ship unnoticed */
+.pending {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  background: repeating-linear-gradient(-45deg, #ffe45c 0 8px, #ffd21f 8px 16px);
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

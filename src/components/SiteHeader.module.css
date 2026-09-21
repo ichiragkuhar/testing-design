@@ -1,0 +1,116 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.bar {
+  align-items: center;
+  min-height: 4.25rem;
+}
+
+.logo {
+  grid-column: 1 / span 2;
+  display: block;
+  width: 112px;
+}
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.nav {
+  display: none;
+}
+
+.cta {
+  display: none;
+}
+
+.menuButton {
+  grid-column: -2 / -1;
+  justify-self: end;
+  min-height: 2.75rem;
+  padding: 0 0.25rem;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.menu {
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  padding-block: var(--space-3) var(--space-4);
+}
+.menu ul {
+  list-style: none;
+  row-gap: 0;
+}
+.menu li {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--grid-line);
+}
+.menu li a {
+  display: block;
+  padding: 0.6rem 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 800;
+  font-variation-settings: var(--condensed);
+  text-decoration: none;
+}
+.menu .menuAction {
+  border: 0;
+  padding-top: var(--space-3);
+}
+.menu .menuAction a {
+  font-size: 1rem;
+  font-variation-settings: var(--wide);
+  display: inline-flex;
+  padding: 0.8rem 1.25rem;
+}
+
+@media (min-width: 1080px) {
+  .logo {
+    width: 124px;
+  }
+  .nav {
+    display: block;
+    grid-column: 4 / span 6;
+  }
+  .nav ul {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    list-style: none;
+  }
+  .nav a {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s var(--ease-out);
+  }
+  .nav a:hover,
+  .nav a[aria-current="page"] {
+    border-bottom-color: var(--ink);
+  }
+  .cta {
+    display: inline-flex;
+    grid-column: 10 / -1;
+    justify-self: end;
+    min-height: 2.75rem;
+    font-size: 0.9375rem;
+  }
+  .menuButton,
+  .menu {
+    display: none;
+  }
+}

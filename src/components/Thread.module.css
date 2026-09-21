@@ -1,0 +1,41 @@
+/* small screens: a folio line closing the section */
+.thread {
+  grid-column: 1 / -1;
+  margin-top: var(--space-5);
+  padding-top: var(--space-2);
+  border-top: 1px solid currentColor;
+  font-size: var(--text-small);
+  line-height: 1.4;
+}
+.thread ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+}
+.thread li {
+  opacity: 0.78;
+}
+.thread li[aria-current="step"] {
+  opacity: 1;
+  font-weight: 700;
+}
+
+/* wide screens: a side column, held while the section scrolls */
+@media (min-width: 1080px) {
+  .thread {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 12;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .thread ol {
+    position: sticky;
+    top: 6.5rem;
+    display: grid;
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid currentColor;
+  }
+}

@@ -39,6 +39,7 @@ export default function SiteHeader() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  prefetch={false}
                   aria-current={pathname === item.href ? "page" : undefined}
                 >
                   {item.label}
@@ -67,7 +68,7 @@ export default function SiteHeader() {
         <ul className="page-grid">
           {NAV.map((item) => (
             <li key={item.href}>
-              <Link href={item.href} onClick={() => setOpen(false)}>
+              <Link href={item.href} prefetch={false} onClick={() => setOpen(false)}>
                 {item.label}
               </Link>
             </li>

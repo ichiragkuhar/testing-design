@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import Arrow from "@/components/Arrow";
 import SeamPhoto from "@/components/SeamPhoto";
-import Thread from "@/components/Thread";
 import { SEBI_REG } from "@/components/nav";
 import { MARKET_FIGURES } from "@/content/figures";
+import { HOME } from "@/content/home";
 import s from "./home.module.css";
 
 const FILTERS = [
@@ -62,8 +62,6 @@ export default function Home() {
             opportunities before they become widely visible.
           </p>
         </div>
-
-        <Thread at={1} className={s.threadOpening} />
       </section>
 
       {/* Built in private markets */}
@@ -105,8 +103,6 @@ export default function Home() {
             The full opportunity <Arrow size={16} />
           </Link>
         </p>
-
-        <Thread at={2} className={s.threadShort} />
       </section>
 
       {/* Chosen */}
@@ -129,8 +125,6 @@ export default function Home() {
             Our investment philosophy <Arrow size={16} />
           </Link>
         </p>
-
-        <Thread at={3} />
       </section>
 
       {/* Preserved */}
@@ -163,8 +157,6 @@ export default function Home() {
             </Link>
           </p>
         </div>
-
-        <Thread at={4} />
       </section>
 
       {/* Entrusted */}
@@ -184,11 +176,8 @@ export default function Home() {
           </p>
         </blockquote>
         <p className={s.signature}>
-          <span className="pending">[NAME — PENDING]</span>
-          <span className="pending">[TITLE — PENDING]</span>
+          {HOME.noteSignOff}
         </p>
-
-        <Thread at={5} className={s.threadAfter} />
       </section>
 
       {/* Close */}

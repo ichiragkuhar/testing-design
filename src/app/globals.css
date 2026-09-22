@@ -77,6 +77,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Design 1 sets its face on its own shell, so other designs never load Archivo */
+.modern {
+  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-variation-settings: var(--wide);
+}
+
 ::selection {
   background: var(--gold);
   color: var(--ink);

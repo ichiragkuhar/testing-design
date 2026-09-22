@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
 import "./globals.css";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
-  display: "swap",
-});
+import DesignSwitcher from "@/components/DesignSwitcher";
 
 export const metadata: Metadata = {
   title: {
@@ -20,23 +11,15 @@ export const metadata: Metadata = {
     "Suvira Asset Management LLP is the investment manager of a SEBI-registered Category II Alternative Investment Fund backing Indian growth-stage and pre-IPO companies.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={archivo.variable}>
+    <html lang="en-IN">
       <body>
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <div className="grid-lines" aria-hidden="true">
-          <div className="page-grid">
-            {Array.from({ length: 12 }, (_, i) => (
-              <span key={i} />
-            ))}
-          </div>
-        </div>
-        <SiteHeader />
         {children}
-        <SiteFooter />
+        {process.env.NEXT_PUBLIC_DESIGN_SWITCHER !== "off" && <DesignSwitcher />}
       </body>
     </html>
   );

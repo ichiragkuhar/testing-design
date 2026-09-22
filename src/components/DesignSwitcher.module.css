@@ -1,0 +1,63 @@
+.switcher {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 100;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 4px;
+  background: #111111;
+  color: #ffffff;
+  /* a review tool, not part of any design: a self-contained system stack */
+  font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-variation-settings: normal;
+  font-size: 13px;
+  line-height: 1;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.28);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 8px;
+  color: #a3a3a3;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+.option:hover {
+  background: #2a2a2a;
+}
+.option[aria-current="page"] {
+  background: #ffffff;
+  color: #111111;
+}
+.option:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.n {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 520px) {
+  .name {
+    display: none;
+  }
+  .option {
+    min-width: 40px;
+    justify-content: center;
+  }
+}

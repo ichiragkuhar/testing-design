@@ -1,0 +1,892 @@
+/* Design 3 · Monumental — the bank facade: stone ground, black slabs, carved capitals, a colonnade */
+
+.monument {
+  --stone: #eceae5;
+  --ink: #111111; /* 15.7:1 on stone */
+  --muted: #5e5a53; /* 5.7:1 on stone */
+  --gold: #b49465; /* on black only, 6.6:1 */
+  --gold-text: #7a5f36; /* gold as text on stone, 5.0:1 */
+  --slab-text: #ece9e2;
+  --slab-muted: #a8a39a; /* 7.5:1 on black */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  min-height: 100vh;
+  background: var(--stone);
+  color: var(--ink);
+  font-family: var(--font-spectral), Georgia, serif;
+  font-variation-settings: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  text-align: left;
+}
+.monument ::selection {
+  background: var(--ink);
+  color: var(--stone);
+}
+.monument :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+.monument h1,
+.monument h2,
+.monument h3 {
+  font-family: var(--font-cinzel), "Trajan Pro", Georgia, serif;
+  font-weight: 600;
+}
+
+/* ─── entablature header ─── */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--stone);
+  border-top: 10px solid var(--ink);
+}
+.header::after {
+  content: "";
+  display: block;
+  height: 7px;
+  border-top: 4px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.headerInner {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  column-gap: 1.25rem;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding: 0.9rem var(--margin);
+}
+.logo {
+  width: 112px;
+}
+.logo img {
+  width: 100%;
+  height: auto;
+}
+.nav {
+  display: none;
+}
+.headerCta {
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--ink);
+}
+@media (min-width: 1080px) {
+  .headerInner {
+    grid-template-columns: 1fr auto 1fr;
+    padding-block: 1.1rem;
+  }
+  .logo {
+    width: 132px;
+  }
+  .nav {
+    display: block;
+  }
+  .nav ul {
+    display: flex;
+    gap: 2.25rem;
+    list-style: none;
+  }
+  .nav a {
+    font-family: var(--font-cinzel), serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+  }
+  .nav a:hover,
+  .nav a[aria-current="page"] {
+    border-bottom-color: var(--ink);
+  }
+  .headerCta {
+    justify-self: end;
+    padding: 0.7rem 1.2rem;
+    background: var(--ink);
+    color: var(--stone);
+    border: 0;
+  }
+  .headerCta:hover {
+    background: #2b2a27;
+  }
+}
+
+/* ─── facade and plinth ─── */
+
+.facade,
+.plinth,
+.stone,
+.slab,
+.footer {
+  --inline: max(var(--margin), calc((100% - 1584px) / 2));
+}
+.facade {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4.5rem var(--inline) 4rem;
+}
+.inscriptionSmall {
+  margin-top: 1.75rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+}
+.thesis {
+  max-width: 19ch;
+  font-size: clamp(2.375rem, 1rem + 4.6vw, 5.75rem);
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+  text-wrap: balance;
+  animation: carve 2.4s var(--ease) 0.1s both;
+}
+/* the one authored motion: the inscription is cut from left to right. Only
+   clip-path animates, so the line breaks never change. */
+@keyframes carve {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@media (min-width: 1080px) {
+  .facade {
+    padding-block: 7rem 6rem;
+  }
+}
+
+.plinth {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 3.5rem var(--inline) 4rem;
+  background: var(--ink);
+  color: var(--slab-text);
+  border-top: 1px solid var(--ink);
+}
+.plinthText {
+  max-width: 46ch;
+  font-size: clamp(1.1875rem, 1rem + 0.6vw, 1.4375rem);
+  line-height: 1.55;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-top: 2.25rem;
+}
+.ctaGold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.25rem;
+  padding: 0.8rem 1.6rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+.ctaGold:hover {
+  background: #c7a878;
+}
+.ctaGold svg {
+  transition: transform 0.35s var(--ease);
+}
+.ctaGold:hover svg {
+  transform: translateX(4px);
+}
+.textLinkOnSlab {
+  color: var(--slab-text);
+  text-underline-offset: 0.35em;
+  text-decoration-color: var(--gold);
+}
+.slab :focus-visible,
+.plinth :focus-visible {
+  outline-color: var(--gold);
+}
+
+/* ─── stone sections ─── */
+
+.stone,
+.slab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5rem var(--inline);
+}
+@media (min-width: 1080px) {
+  .stone,
+  .slab {
+    padding-block: 7.5rem;
+  }
+}
+.stone + .stone {
+  border-top: 1px solid var(--ink);
+}
+.heading {
+  max-width: 24ch;
+  font-size: clamp(1.75rem, 1rem + 2.2vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+.italicLead {
+  max-width: 30ch;
+  font-style: italic;
+  font-size: clamp(1.375rem, 1rem + 1vw, 1.875rem);
+  line-height: 1.35;
+  color: var(--muted);
+}
+.inscription {
+  max-width: 18ch;
+  margin-top: 1.5rem;
+  font-size: clamp(2.25rem, 1rem + 3.8vw, 4.75rem);
+  line-height: 1.08;
+  letter-spacing: 0.035em;
+  color: var(--gold-text);
+  text-wrap: balance;
+}
+.body {
+  max-width: 50ch;
+  margin-top: 2rem;
+  color: var(--muted);
+}
+.more {
+  margin-top: 3rem;
+}
+.more a,
+.moreOnSlab a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0.25rem;
+}
+.moreOnSlab {
+  margin-top: 3rem;
+}
+.moreOnSlab a {
+  color: var(--gold);
+}
+.more a svg,
+.moreOnSlab a svg {
+  transition: transform 0.35s var(--ease);
+}
+.more a:hover svg,
+.moreOnSlab a:hover svg {
+  transform: translateX(4px);
+}
+
+/* ─── black slabs ─── */
+
+.slab {
+  background: var(--ink);
+  color: var(--slab-text);
+}
+.slabHeading {
+  max-width: 24ch;
+  font-size: clamp(1.75rem, 1rem + 2.2vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+.slabTagline {
+  margin-top: 1rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+.slabBody {
+  max-width: 48ch;
+  margin-top: 1.5rem;
+  color: var(--slab-muted);
+}
+
+/* figures as tablets between heavy rules */
+.tablets {
+  display: grid;
+  width: 100%;
+  margin-top: 3.5rem;
+  border-block: 6px solid var(--gold);
+}
+.tablet {
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 0;
+}
+.tablet + .tablet {
+  border-top: 1px solid var(--gold);
+}
+.tabletMeasure {
+  order: 2;
+  margin-top: 0.75rem;
+}
+.tabletValue {
+  order: 1;
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(2.75rem, 1rem + 4.4vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: lining-nums;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.tabletMeta {
+  order: 3;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--slab-muted);
+}
+@media (min-width: 900px) {
+  .tablets {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+  .tablet + .tablet {
+    border-top: 0;
+    border-left: 1px solid var(--gold);
+    padding-left: 2.5rem;
+  }
+}
+
+/* ─── the colonnade ─── */
+
+.colonnade {
+  --pillar: var(--ink);
+  display: grid;
+  width: 100%;
+  margin-top: 3.5rem;
+  list-style: none;
+}
+.slabColonnade .colonnade {
+  --pillar: var(--gold);
+}
+.pillar {
+  position: relative;
+  height: 10px;
+  background: var(--pillar);
+}
+.pillar::before,
+.pillar::after {
+  content: none;
+}
+.bay {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2.25rem 0.5rem;
+}
+@media (min-width: 900px) {
+  .colonnade {
+    grid-template-columns: repeat(var(--cols), 14px minmax(0, 1fr)) 14px;
+    column-gap: 0;
+    padding-block: 18px;
+  }
+  .pillar {
+    height: auto;
+    min-height: 100%;
+  }
+  /* capital and base: wider blocks crowning and grounding each pillar */
+  .pillar::before,
+  .pillar::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    height: 10px;
+    background: var(--pillar);
+  }
+  .pillar::before {
+    top: -18px;
+  }
+  .pillar::after {
+    bottom: -18px;
+  }
+  .bay {
+    padding: 1rem 2.25rem;
+  }
+}
+.bayTitle {
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.375rem, 1rem + 0.9vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+}
+.bayText {
+  max-width: 30ch;
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+.bayRole {
+  margin-top: 0.75rem;
+  font-style: italic;
+  color: var(--gold);
+}
+.bayOrg {
+  font-size: 0.875rem;
+  color: var(--slab-muted);
+}
+.bayPoints {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1.25rem;
+  list-style: none;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--slab-muted);
+}
+.bayLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-underline-offset: 0.4em;
+}
+.bayLinkBlock {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+}
+.bayCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold-text);
+}
+.bayCta svg {
+  transition: transform 0.35s var(--ease);
+}
+.bayLinkBlock:hover .bayCta svg {
+  transform: translateX(4px);
+}
+.bayLinkBlock:hover .bayTitle {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+/* ─── preservation ─── */
+
+.way {
+  max-width: 34ch;
+  margin-top: 2.5rem;
+  padding-block: 1.5rem;
+  border-block: 1px solid var(--gold);
+  font-size: clamp(1.25rem, 1rem + 0.8vw, 1.625rem);
+  line-height: 1.4;
+}
+.way strong {
+  font-weight: 500;
+  color: var(--gold);
+}
+.pair {
+  display: grid;
+  gap: 1.25rem;
+  width: min(64rem, 100%);
+  margin-top: 3rem;
+  font-size: 1rem;
+  color: var(--slab-muted);
+}
+@media (min-width: 900px) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+  }
+}
+
+/* ─── note ─── */
+
+.note {
+  max-width: 34ch;
+  margin-top: 2.5rem;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 1rem + 1.5vw, 2.375rem);
+  line-height: 1.4;
+}
+.note p + p {
+  margin-top: 1em;
+}
+.signOff {
+  margin-top: 2rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* ─── close ─── */
+
+.close {
+  gap: 2rem;
+  border-top: 10px solid var(--gold);
+}
+.closeMark {
+  width: 96px;
+  height: 96px;
+}
+.closeHeading {
+  max-width: 20ch;
+  font-size: clamp(1.875rem, 1rem + 2.8vw, 3.75rem);
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+.founders {
+  font-size: 1rem;
+  color: var(--slab-muted);
+}
+.founders a {
+  color: var(--slab-text);
+  text-underline-offset: 0.35em;
+}
+
+/* ─── footer ─── */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  padding: 4rem var(--inline) 6rem;
+  border-top: 10px solid var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.footerMark {
+  width: 150px;
+  height: auto;
+}
+.footerNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem 1.75rem;
+  list-style: none;
+}
+.footerNav a {
+  display: inline-block;
+  padding-block: 0.3rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.footerNav a:hover {
+  text-decoration: underline;
+}
+.footerFacts {
+  display: grid;
+  gap: 1.25rem;
+  width: min(72rem, 100%);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--ink);
+}
+.footerFacts dt {
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.footerFacts dd {
+  color: var(--muted);
+}
+.copy {
+  color: var(--muted);
+}
+@media (min-width: 900px) {
+  .footerFacts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thesis {
+    animation: none;
+  }
+}
+
+/* ─── small-screen menu ─── */
+
+.menu {
+  display: block;
+}
+.menuToggle {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 0.25rem;
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1px solid currentColor;
+  user-select: none;
+}
+.menuToggle::-webkit-details-marker {
+  display: none;
+}
+.menu[open] .menuToggle {
+  border-bottom-width: 2px;
+}
+.menu > nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 30;
+  background: var(--stone);
+  border-bottom: 1px solid var(--ink);
+  padding: 0.5rem var(--margin) 1.5rem;
+}
+.menuList {
+  list-style: none;
+}
+.menuList li + li {
+  border-top: 1px solid var(--ink);
+}
+.menuList a {
+  display: block;
+  padding-block: 0.8rem;
+  font-family: var(--font-cinzel), serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  text-decoration: none;
+}
+.menuList a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* on phones the opening's own call to action carries the header's job */
+@media (max-width: 559px) {
+  .headerCta {
+    display: none;
+  }
+}
+@media (min-width: 1080px) {
+  .menu {
+    display: none;
+  }
+}
+
+/* ─── composition: every section is a 12-column grid, content spread across it ─── */
+
+.facade,
+.plinth,
+.stone,
+.slab {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gutter);
+  align-items: start;
+}
+.facade > *,
+.plinth > *,
+.stone > *,
+.slab > * {
+  grid-column: 1 / -1;
+}
+
+/* hero: the inscription left, the photograph in a heavy frame right */
+.facadePlate {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 2.5rem 0 0;
+  border: 12px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: 6px;
+  background: var(--ink);
+}
+.facadePlate img {
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+
+/* the close's mark and text */
+.close {
+  row-gap: 1.75rem;
+}
+
+@media (min-width: 1080px) {
+  .facade {
+    align-items: center;
+    min-height: calc(100svh - 5.5rem);
+    padding-block: 3rem;
+  }
+  .facade .thesis {
+    grid-column: 1 / span 7;
+    grid-row: 1;
+    align-self: end;
+  }
+  .facade .inscriptionSmall {
+    grid-column: 1 / span 7;
+    grid-row: 2;
+    align-self: start;
+  }
+  .facadePlate {
+    grid-column: 9 / -1;
+    grid-row: 1 / span 2;
+    aspect-ratio: 3 / 4;
+    max-height: 72svh;
+    margin: 0;
+  }
+
+  .plinth {
+    align-items: center;
+  }
+  .plinthText {
+    grid-column: 1 / span 7;
+    grid-row: 1;
+  }
+  .plinth .actions {
+    grid-column: 9 / -1;
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  /* the turn: lead in the first third, the inscription across the rest */
+  .stone .italicLead {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    padding-top: 0.6rem;
+  }
+  .stone .inscription {
+    grid-column: 5 / -1;
+    grid-row: 1;
+    max-width: none;
+    margin-top: 0;
+  }
+  .stone .body {
+    grid-column: 5 / span 6;
+  }
+
+  /* headings left, supporting copy right */
+  .slab .slabHeading,
+  .stone .heading {
+    grid-column: 1 / span 7;
+    grid-row: 1;
+  }
+  .slab .slabTagline {
+    grid-column: 9 / -1;
+    grid-row: 1;
+    margin-top: 0.6rem;
+  }
+  .slab .slabBody {
+    grid-column: 9 / -1;
+    grid-row: 1;
+    margin-top: 0.4rem;
+    align-self: start;
+  }
+  .slab .slabTagline + .slabBody {
+    grid-row: 2;
+    margin-top: 0.75rem;
+  }
+  .slab .way {
+    grid-column: 9 / -1;
+    grid-row: 2;
+    margin-top: 1.5rem;
+  }
+
+  /* the founder's note: heading left, the letter across the grid */
+  .stone .heading + .note {
+    grid-column: 5 / -1;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+    max-width: 36ch;
+  }
+  .stone .note + .signOff {
+    grid-column: 5 / -1;
+  }
+
+  /* close: text left, the mark large on the right */
+  .close {
+    align-items: center;
+  }
+  .close > * {
+    grid-column: 1 / span 7;
+  }
+  .close .closeMark {
+    grid-column: 9 / -1;
+    grid-row: 1 / span 4;
+    justify-self: center;
+    width: min(100%, 18rem);
+    height: auto;
+  }
+}
+
+/* the close's call to action keeps its own width */
+.close .ctaGold {
+  justify-self: start;
+}
+@media (min-width: 1080px) {
+  /* a heading that introduces the letter takes only the first third */
+  .stone .heading:has(+ .note) {
+    grid-column: 1 / span 4;
+  }
+}
+
+/* menu opens with a short drop */
+.menu[open] > nav {
+  animation: menuIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu[open] > nav {
+    animation: none;
+  }
+}

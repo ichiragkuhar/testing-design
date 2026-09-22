@@ -89,9 +89,6 @@
   color: var(--ink-2);
 }
 
-.opening .threadOpening {
-  margin-bottom: var(--space-5);
-}
 
 @media (min-width: 720px) {
   .opening .photo {
@@ -128,18 +125,13 @@
     margin-right: calc(var(--margin) * -1);
   }
   .turn {
-    grid-column: 3 / span 5;
+    grid-column: 1 / span 6;
     grid-row: 2;
     min-height: 92svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-block: var(--space-7);
-  }
-  .opening .threadOpening {
-    grid-row: 2;
-    padding-top: var(--space-7);
-    margin-bottom: 0;
   }
 }
 
@@ -210,11 +202,11 @@
     padding-block: var(--space-7);
   }
   .heading {
-    grid-column: 3 / span 8;
+    grid-column: 1 / span 8;
   }
   .lead,
   .more {
-    grid-column: 3 / span 7;
+    grid-column: 1 / span 7;
   }
 }
 
@@ -275,9 +267,6 @@
 }
 
 @media (min-width: 1080px) {
-  .threadShort {
-    grid-row: 1 / span 2;
-  }
   .figures {
     grid-column: 1 / -1;
     display: grid;
@@ -372,7 +361,7 @@
 
 @media (min-width: 1080px) {
   .filters {
-    grid-column: 3 / -1;
+    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: subgrid;
   }
@@ -383,10 +372,10 @@
     align-items: end;
   }
   .filter dt {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
   }
   .filter dd {
-    grid-column: 6 / -1;
+    grid-column: 7 / -1;
     margin-top: 0;
   }
 }
@@ -439,14 +428,14 @@
 
 @media (min-width: 1080px) {
   .question {
-    grid-column: 3 / span 7;
+    grid-column: 1 / span 8;
     text-indent: -0.36em;
   }
   .answer {
-    grid-column: 3 / span 5;
+    grid-column: 1 / span 6;
   }
   .way {
-    grid-column: 3 / span 6;
+    grid-column: 1 / span 7;
   }
   .diligence {
     grid-column: 10 / -1;
@@ -473,6 +462,7 @@
 
 .signature {
   grid-column: 1 / -1;
+  font-weight: 700;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -491,14 +481,6 @@
   .signature {
     grid-column: 1 / span 8;
     grid-row: 2;
-  }
-  .threadAfter {
-    grid-column: 1 / span 4;
-    grid-row: 3;
-    margin-top: var(--space-6);
-  }
-  .threadAfter ol {
-    position: static;
   }
 }
 

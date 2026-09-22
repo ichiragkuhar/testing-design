@@ -52,10 +52,11 @@ Pages: Home, About, Opportunity, Philosophy, Process, Fund (gated), Insights, Co
 - Name: **Suvira** / Suvira Asset Management LLP. Tagline candidates from the deck: "Rare is not created. It is discovered." and "Building Tomorrow's Institutions."
 - **The official logo is the sans version:** the gold tree mark with a bold sans "Suvira", plus "Asset Management LLP" in the full lockup. The deck's serif "S U V I R A" (Narkisim) was PowerPoint styling only. Don't use it or recreate it.
 - **Brand gold is `#B49465`**, sampled from `suvira-mark.png`. It is the logo's muted gold, not the deck's `#CB952E`. The logo's wordmark ink is near-black `#040404`.
-- Logo files are in `public/brand/`: `suvira-logo-horizontal.png` and `suvira-logo-full.png` (both cropped to their content with a transparent background, and render correctly on light and dark backgrounds), `suvira-mark.png` (transparent), and `suvira-mark-192.png` / `suvira-mark-512.png` (app icons on an opaque background). There is no vector version yet. There is also no reversed (light-wordmark) lockup, because the black wordmark disappears on dark backgrounds.
+- Logo files are in `public/brand/`: `suvira-logo-horizontal.png` and `suvira-logo-full.png` (both cropped to their content with a transparent background, and render correctly on light and dark backgrounds), `suvira-mark.png` (transparent), and `suvira-mark-192.png` / `suvira-mark-512.png` (app icons on an opaque background). There is no vector version yet. Reversed lockups for dark grounds (`suvira-logo-horizontal-reverse.png`, `suvira-wordmark-full-reverse.png`) recolor only the wordmark ink to ivory `#F2EFE9`; the gold mark is unchanged.
 - Voice from the deck: calm, measured and principled. It talks about trust, discipline and responsibility ("We do not view capital as a commodity to be deployed. We view it as a responsibility to be honored."). It isn't hype-driven.
 - **User constraint:** the site must not look AI-generated. An earlier build did, and a later redesign didn't fix it. Deck frameworks that only work as generic diagrams can be dropped.
-- The deck also uses navy `#011631`. It isn't binding for the site.
+- **Palette rule (user, 2026-09-22):** every design is built from the logo gold and black, with white or neutral near-white paper as ground. Slight tints (a lighter gilt, warm greys) are fine; **no red, green, navy or other hues.**
+- The deck also uses navy `#011631`. It is not used.
 - **Gold contrast:** #B49465 is only 2.85:1 against white, in either direction. Never put text on gold in white, and never use gold for text or essential UI edges on white. Near-black on gold (about 7:1) is the rule for gold sections.
 
 ## Evidence on Hand
@@ -64,11 +65,13 @@ Source: `C:\Users\shrey\Downloads\PITCH DECK (1).pptx`. Approved for use:
 
 - Suvira logo.
 - Market statistics **with their cited sources**. Only two are cleared for now: real GDP growth ~6.5%–7%, FY24–FY30P (**IMF**), and USD 90+ Bn PE/VC investment in India, 2014–2024 (**AVCA**). USD 10 Tn by FY2032, 2X+ capital deployed, ₹97,000 Cr realised since 2021 and 375+ IPOs in 2025 are **held back** until the user confirms their sources. Any figure table must accept extra rows without a redesign.
-- The Founder's Note text (slide 23). It is unsigned in the deck: use a clearly marked placeholder for the name and title, and never guess.
+- The Founder's Note text (slide 23), signed **"— Suvira Asset Management LLP"** (user-supplied sign-off; no individual name).
 - The Three Filters (slides 18–19).
 - The six Non-Negotiables (slide 22). **They exist only as an image in the deck** and need transcribing and checking with the user.
 - The "5 Questions. Our Answers" section (slide 29).
-- Leadership names and bios (slide 10). **They exist only as an image** and need transcribing and checking.
+- **Leadership (user-supplied, 2026-09-22; in `src/content/about.ts`):** Sushant Damani, COO & Compliance Officer; Vineet Patawari, CEO & Principal Officer; Rahul D Thalia, CIO & Head of Investments. Each with four bio points and a LinkedIn URL.
+- **About page copy (user-supplied):** "Discipline in process. Trust in every decision." plus the intro line, the leadership tagline/intro, and three next-step links (Philosophy, The Fund, Investor Relations).
+- **Open compliance question:** the user-supplied Fund link text shows "₹150 Cr Category II AIF" publicly on About, which conflicts with the gated-fund-terms rule above. Confirm with compliance.
 - Trustee, investment manager and custodian names (slide 16). The service providers are **Axis Trustee** and **Orbis**. Show them as **text only, never logos**. Confirm each one's exact legal name and role with the user before publishing.
 
 - **Imagery:** the deck's dark rock with a gold seam (`ppt/media/image2.png`, slides 4 and 26) and the logo mark are the only images. Everything else is type and sourced numbers. No stock or AI-generated photography, and no team photos (none are needed).
